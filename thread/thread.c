@@ -3,6 +3,8 @@
 #include <pthread.h>
 pthread_mutex_t x;
 
+//man pthread_create && pthread_mutex_lock
+
 void *test()
 {
     pthread_mutex_lock(&x);

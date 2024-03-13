@@ -16,16 +16,15 @@ int main() {
     int msg_id;
     struct message msg;
 
-    key = ftok("msg_queue", 'B');
+    key = ftok("msg_queue", 'C');
     msg_id = msgget(key, 0666 | IPC_CREAT);
 
-    msg.msg_type = 1;
+    msg.msg_type = 1; // Set message type
+
     printf("Enter message to send: ");
     fgets(msg.msg_text, MSG_SIZE, stdin);
 
-    msgsnd(msg_id, &msg, sizeof(msg), 0);
-
-    printf("Data sent is: %s\n", msg.msg_text);
+    msgsnd(msg_id, &msg, sizeof(msg) - sizeof(long), 0); // Note the size argument
 
     return 0;
 }

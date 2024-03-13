@@ -11,12 +11,13 @@ int main() {
     char *shm_addr;
 
     key = ftok("shared_mem", 'A');
-    shm_id = shmget(key, SHM_SIZE, IPC_CREAT | 0666);
+
+    shm_id = shmget(key, SHM_SIZE,IPC_CREAT|0666);
 
     shm_addr = shmat(shm_id, NULL, 0);
 
-    printf("Enter message to write to shared memory: ");
-    fgets(shm_addr, SHM_SIZE, stdin);
+    // printf("Enter message to write to shared memory: ");
+    // fgets(shm_addr, SHM_SIZE, stdin);
 
     printf("Data written to shared memory: %s\n", shm_addr);
 
@@ -24,4 +25,3 @@ int main() {
 
     return 0;
 }
- 
